@@ -1,8 +1,10 @@
 # URL_Shortener
 
-![Screenshot](url2.jpeg)
+![url2](https://github.com/aarya-12/URL_Shortener/assets/112845900/7f443b3c-a099-4c96-ac9d-9bf2606399d0)
+
 
 A simple URL shortener project that allows you to shorten long URLs into shorter, more manageable links.
+
 
 
 ## Features
