@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>URL-Shortner</title>
+</head>
+<body>
+  <div class="container">
+    <h1>URL-Shortner</h1>
+    <form action="/shortUrls" method="POST" class="my-4 form-inline">
+      <label for="fullUrl" class="sr-only">Url</label>
+      <input required placeholder="Url" type="url" name="fullUrl" id="fullUrl" class="form-control col mr-2">
+      <input required placeholder="User" type="text" name="author" id="author" class="form-control col mr-2">
+      <button class="btn btn-success" type="submit">Shrink</button>
+    </form>
+    <form action="/search" method="POST" class="my-4 form-inline">
+      <label for="author" class="sr-only">Search</label>
+      <input required placeholder="Author Name" type="text" name="author" id="author" class="form-control col mr-2">
+      <button class="btn btn-success" type="submit">Search</button>
+    </form>
+    <div style="width: 100%;">
+      <form action="/sort" method="POST" style="display: flex; justify-content:center ; align-items: center; width: 100%;" class="my-4 form-inline">
+        <input type="hidden" name="clicks" value="clicks"/>
+        <button class="btn btn-success" type="submit">Sort</button>
+      </form>
+    </div>
+    <table class="table table-striped table-responsive">
+      <thead>
+        <tr>
+          <th>Full URL</th>
+          <th>Short URL</th>
+          <th>Author</th>
+          <th>Clicks</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% shortUrls.forEach(shortUrl => { %>
+          <tr>
+            <td><a href="<%= shortUrl.full %>"><%= shortUrl.full %></a></td>
+            <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></a></td>
+            <td><p><%= shortUrl.author %></p></td>
+            <td><%= shortUrl.clicks %></td>
+            <td><form action="/deleteUrls" method="POST" class="my-4 form-inline">
+              <input type="hidden" id="postId" name="postId" value=<%= shortUrl._id %> />
+              <button class="btn btn-success" type="submit">Delete</button>
+            </form></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
